@@ -2,19 +2,19 @@ local d = require('debug')
 
 hotline_protocol = Proto("HOTL",  "Hotline Protocol")
 
-flag = ProtoField.int8("hotline.flag", "flag", base.DEC)
-is_reply = ProtoField.int8("hotline.is_reply", "isReply", base.DEC)
-req_type = ProtoField.uint16("hotline.req_type", "requestType", base.DEC)
+flag = ProtoField.int8("hotline.flag", "Flag", base.DEC)
+is_reply = ProtoField.bool("hotline.is_reply", "Is Reply")
+req_type = ProtoField.uint16("hotline.req_type", "Transaction Type", base.DEC)
 
-tran_id = ProtoField.uint32("hotline.tran_id", "tranID", base.DEC)
-error_code = ProtoField.uint32("hotline.error_code", "errorCode", base.DEC)
-total_size = ProtoField.uint32("hotline.total_size", "totalSize", base.DEC)
-data_size = ProtoField.uint32("hotline.data_size", "dataSize", base.DEC)
-param_count = ProtoField.uint16("hotline.param_count", "fieldCount", base.DEC)
+tran_id = ProtoField.uint32("hotline.tran_id", "Transaction ID", base.DEC)
+error_code = ProtoField.uint32("hotline.error_code", "Error Code", base.DEC)
+total_size = ProtoField.uint32("hotline.total_size", "Total Size", base.DEC)
+data_size = ProtoField.uint32("hotline.data_size", "Data Size", base.DEC)
+param_count = ProtoField.uint16("hotline.param_count", "Field Count", base.DEC)
 
-field_type = ProtoField.uint16("hotline.field_type", "fieldType", base.DEC)
-field_size = ProtoField.uint16("hotline.field_size", "fieldSize", base.DEC)
-field_data = ProtoField.none("hotline.field_data", "fieldData", base.HEX)
+field_type = ProtoField.uint16("hotline.field_type", "Type", base.DEC)
+field_size = ProtoField.uint16("hotline.field_size", "Size", base.DEC)
+field_data = ProtoField.bytes("hotline.field_data", "Data")
 
 hotline_protocol.fields = { flag, is_reply, req_type, tran_id, error_code, total_size, data_size, param_count, field_type, field_size, field_data }
 
